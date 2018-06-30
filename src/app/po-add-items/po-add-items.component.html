@@ -1,0 +1,26 @@
+<app-po-add-items-form [itemsLen]="addItemsData.length"></app-po-add-items-form>
+<table datatable [dtOptions]="dtOptions" class="row-border hover table-striped">
+    <thead>
+        <tr>
+        <th>Item Name</th>
+        <th>Item Price</th>
+        <th>no of Units</th>
+        <th>Prices</th>
+        <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of addItemsData">
+            <td>{{data.itemname}}</td>
+            <td>{{data.itemprice}}</td>
+            <td>{{data.itemunits}}</td>
+            <td>{{data.itemunits * data.itemprice | currency: ' '}} USD</td>
+            <td>
+                <button class="btn btn-primary btn-sm" mat-raised-button (click)="editItem(data)">Edit</button>
+                <button type="button" class="btn btn-danger btn-sm" mat-raised-button (click)="deleteItem(data)">delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="pull-right">  Total: {{total_val | currency: ' '}} USD</div>

@@ -1,0 +1,106 @@
+<form [formGroup]="signupForm" (submit)="onSubmit()">
+  <input type="hidden" formControlName="itemId">
+  <div class="row">
+  <div class="col-md-6">
+      <!-- name -->
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Item Name</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="exampleFormControlInput1" 
+          formControlName="itemname"
+          placeholder="name">
+          <span 
+            *ngIf="signupForm.get('itemname').invalid && signupForm.get('itemname').touched"
+            class="help-block error">Please enter a item name!</span>
+      </div>
+      <!-- code -->
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Item Code</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="itemCode" 
+          formControlName="itemcode"
+          placeholder="item code">
+      </div>
+      <!-- price -->
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Item Price</label>
+        <input 
+          type="email" 
+          class="form-control" 
+          id="itemPrice" 
+          formControlName="itemprice"
+          placeholder="price">
+      </div>
+      <!-- units -->
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Units</label>
+        <input 
+          type="email" 
+          class="form-control" 
+          id="itemUnits" 
+          formControlName="itemunits"
+          placeholder="units">
+      </div>
+      <!-- unit of measurement -->
+      <div class="form-group">
+        <label for="exampleFormControlInput1">UOM</label>
+        <input 
+          type="email" 
+          class="form-control" 
+          id="itemUnits" 
+          formControlName="uom"
+          placeholder="unit of measurement">
+      </div>
+  
+    </div>
+    <div class="col-md-6">
+        <!-- Item Description -->
+        <div class="form-group">
+          <textarea 
+            class="form-control"
+            formControlName="itemdesc"
+            cols="30" rows="9"></textarea>
+        </div>
+        <!-- Hs Code -->
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Hs Code</label>
+          <input 
+            type="number" 
+            class="form-control" 
+            formControlName="hscode"
+            #hscode
+            (change)="checkValue(hscode)"
+            placeholder="Hs Code">
+            <span 
+            *ngIf="signupForm.get('hscode').invalid && signupForm.get('hscode').touched"
+            class="help-block error">Value must contain atleast 6 digits!</span>
+        </div>
+        <!-- Hts Code -->
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Hts Code</label>
+          <input 
+            type="number" 
+            class="form-control" 
+            formControlName="htscode"
+            maxlength="10"
+            placeholder="Hts Code">
+            <span 
+            *ngIf="signupForm.get('htscode').invalid && signupForm.get('htscode').touched"
+            class="help-block error">Value must contain 10 digits!</span>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="text-center clearfix">
+      <button type="submit"*ngIf="!showDialogClose"  class="btn btn-primary" [disabled]="!signupForm.valid">Add Item</button>
+      <!-- <button type="submit" *ngIf="!showDialogClose" class="btn btn-primary">Get Data</button> -->
+      <button type="button" *ngIf="showDialogClose" class="btn btn-primary" (click)="saveEditedData()">Save</button>
+      <button type="button" *ngIf="showDialogClose" class="btn btn-primary" (click)="closeDialog()">Close</button>
+    </div>
+  </div>  
+  </form>
+
+  
